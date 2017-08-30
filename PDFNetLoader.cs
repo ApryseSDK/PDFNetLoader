@@ -53,9 +53,10 @@ namespace pdftron
         private Assembly PDFNetResolveEventHandler(object sender, ResolveEventArgs args)
         {
             if (!args.Name.StartsWith("PDFNet,")) return null;
-            
+
             Assembly assembly = null;
-            string module_path = path;
+            string module_path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            module_path = System.IO.Path.Combine(module_path, "PDFNet");
             if (Is64BitProcess())
             {
                 module_path = System.IO.Path.Combine(module_path, "x64");
@@ -64,6 +65,7 @@ namespace pdftron
             {
                 module_path = System.IO.Path.Combine(module_path, "x86");
             }
+
             module_path = System.IO.Path.Combine(module_path, "PDFNet.dll");
             assembly = Assembly.LoadFrom(module_path);
             return assembly;
