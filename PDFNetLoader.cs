@@ -19,6 +19,9 @@ namespace pdftron
     /// </example>
     public class PDFNetLoader
     {
+        private static PDFNetLoader _singleton = new PDFNetLoader();
+        private static Object syncLock = new Object();
+
         #region Interface
 
         /// <summary>
@@ -29,6 +32,16 @@ namespace pdftron
         /// <returns></returns>
         public static PDFNetLoader Instance()
         {
+            if(_singleton == null)
+            {
+                lock (syncLock)
+                {
+                    if (_singleton == null)
+                    {
+                        _singleton = new PDFNetLoader();
+                    }
+                }
+            }
             return _singleton;
         }
 
@@ -82,8 +95,6 @@ namespace pdftron
         }
 
         private string path;
-
-        private static readonly PDFNetLoader _singleton = new PDFNetLoader();
 
         #endregion
     }
