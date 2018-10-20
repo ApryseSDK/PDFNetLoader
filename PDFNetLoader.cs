@@ -78,7 +78,7 @@ namespace pdftron
 
         private PDFNetLoader()
         {
-            path = "PDFNet";
+            path = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "PDFNet");
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.AssemblyResolve += new ResolveEventHandler(PDFNetResolveEventHandler);
         }
