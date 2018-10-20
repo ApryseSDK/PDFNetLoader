@@ -19,6 +19,13 @@ namespace pdftron
     /// </example>
     public class PDFNetLoader
     {
+        private static readonly PDFNetLoader _singleton = new PDFNetLoader();
+
+        static PDFNetLoader()
+        {
+            // Just a blank static constructor to force initializers to run first.
+        }
+
         #region Interface
 
         /// <summary>
@@ -71,7 +78,7 @@ namespace pdftron
 
         private PDFNetLoader()
         {
-            path = "PDFNet";
+            path = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "PDFNet");
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.AssemblyResolve += new ResolveEventHandler(PDFNetResolveEventHandler);
         }
@@ -82,8 +89,6 @@ namespace pdftron
         }
 
         private string path;
-
-        private static readonly PDFNetLoader _singleton = new PDFNetLoader();
 
         #endregion
     }
