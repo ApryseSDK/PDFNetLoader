@@ -19,13 +19,6 @@ namespace pdftron
     /// </example>
     public class PDFNetLoader
     {
-        private static readonly PDFNetLoader _singleton = new PDFNetLoader();
-
-        static PDFNetLoader()
-        {
-            // Just a blank static constructor to force initializers to run first.
-        }
-
         #region Interface
 
         /// <summary>
@@ -89,6 +82,18 @@ namespace pdftron
         }
 
         private string path;
+
+        #endregion
+
+        #region Static initialization
+
+
+        private static readonly PDFNetLoader _singleton = new PDFNetLoader();
+
+        static PDFNetLoader()
+        {
+            // Just a blank static constructor to force initializers to run first and in the order of declaration.
+        }
 
         #endregion
     }
