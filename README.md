@@ -7,3 +7,4 @@ Normally PDFNetLoader is distributed along with the PDFNet Nuget packages or wit
 
 Nuget  | http://www.nuget.org/packages/PDFNet/
 PDFNet | https://www.pdftron.com/pdfnet/downloads.html
+![](https://onepixel.pdftron.com/PDFNetLoader)
